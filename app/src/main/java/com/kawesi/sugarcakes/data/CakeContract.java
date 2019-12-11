@@ -40,6 +40,7 @@ public final class CakeContract {
         public static final String CAKE_NAME = "cakename";
         public static final String CAKE_INGREDIENTS =  "cakeingredients";
         public static final String CAKE_PRICE = "cakeprice";
+        public static final String DATE_CREATED = "datecreated";
 
     }
 }

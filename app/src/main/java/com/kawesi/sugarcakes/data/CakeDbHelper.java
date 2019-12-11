@@ -23,7 +23,9 @@ public class CakeDbHelper extends SQLiteOpenHelper {
                 CakeContract.CakeEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CakeContract.CakeEntry.CAKE_NAME + " TEXT NOT NULL, " +
                 CakeContract.CakeEntry.CAKE_INGREDIENTS + " TEXT NOT NULL, " +
-                CakeContract.CakeEntry.CAKE_PRICE + " INTEGER NOT NULL ); ";
+                CakeContract.CakeEntry.CAKE_PRICE + " INTEGER NOT NULL, " +
+                CakeContract.CakeEntry.DATE_CREATED + "INTEGER NOT NULL " + " ); ";
+
         db.execSQL(CREATE_CAKES_TABLE);
         Log.i(TAG, "onCreate: Datbase created");
 
