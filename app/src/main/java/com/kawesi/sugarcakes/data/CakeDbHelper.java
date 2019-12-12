@@ -9,7 +9,7 @@ public class CakeDbHelper extends SQLiteOpenHelper {
     private static final String TAG = "CakeDbHelper";
     //name of database
     public static final String DATABASE_NAME = "cakes";
-    public static final int DATABASE_VERSION = 1;
+    public static final int DATABASE_VERSION = 2;
 
 
     public CakeDbHelper(Context context){
@@ -22,8 +22,9 @@ public class CakeDbHelper extends SQLiteOpenHelper {
         String CREATE_CAKES_TABLE = "CREATE TABLE " + CakeContract.CakeEntry.CAKE_TABLE + "( " +
                 CakeContract.CakeEntry._ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 CakeContract.CakeEntry.CAKE_NAME + " TEXT NOT NULL, " +
-                CakeContract.CakeEntry.CAKE_INGREDIENTS + " TEXT NOT NULL, " +
-                CakeContract.CakeEntry.CAKE_PRICE + " INTEGER NOT NULL, " +
+                CakeContract.CakeEntry.CAKE_INGREDIENTS + " TEXT , " +
+                CakeContract.CakeEntry.CAKE_PRICE + " INTEGER, " +
+                CakeContract.CakeEntry.CAKE_CATEGORY + "INTEGER , " +
                 CakeContract.CakeEntry.DATE_CREATED + "INTEGER NOT NULL " + " ); ";
 
         db.execSQL(CREATE_CAKES_TABLE);
@@ -33,6 +34,7 @@ public class CakeDbHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+        db.execSQL("DROP TABLE IF EXISTS " + CakeContract.CakeEntry.CAKE_TABLE);
+        onCreate(db);
     }
 }

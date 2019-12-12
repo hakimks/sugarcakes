@@ -9,6 +9,17 @@ public class Cake {
     private Date creationDate;
     private String ingredients;
 
+    public int getCategory() {
+        return category;
+    }
+
+    public void setCategory(int category) {
+        this.category = category;
+    }
+
+    private int category;
+
+
     public String getIngredients() {
         return ingredients;
     }
@@ -53,11 +64,12 @@ public class Cake {
     }
 
 
-    public Cake(int id, String name, int price, Date creationDate, String ingredients) {
+    public Cake(int id, String name, int price, Date creationDate, String ingredients, int category) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.creationDate = creationDate;
         this.ingredients = ingredients;
+        this.category = category;
     }
 }
