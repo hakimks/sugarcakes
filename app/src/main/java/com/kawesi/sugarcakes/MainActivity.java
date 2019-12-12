@@ -1,9 +1,11 @@
 package com.kawesi.sugarcakes;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,6 +16,7 @@ import com.kawesi.sugarcakes.data.DummyCakesData;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+    public static final int CREATE_REQUEST_CODE = 1;
     FloatingActionButton fabButton;
 
     CakeDbHelper mCakeDbHelper;
@@ -38,9 +41,20 @@ public class MainActivity extends AppCompatActivity {
         fabButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Intent createCakeIntent = new Intent(MainActivity.this, CreateCakeActivity.class);
+                startActivityForResult(createCakeIntent, CREATE_REQUEST_CODE);
 
             }
         });
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        if(requestCode == CREATE_REQUEST_CODE){
+           if( resultCode == RESULT_OK) {
+               // add the added cake on top of the list
+           }
+        }
     }
 }

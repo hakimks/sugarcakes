@@ -7,6 +7,7 @@ public class Cake {
     private String name;
     private int price;
     private Date creationDate;
+    private String ingredients;
 
     public String getIngredients() {
         return ingredients;
@@ -16,7 +17,7 @@ public class Cake {
         this.ingredients = ingredients;
     }
 
-    private String ingredients;
+
 
 
     public int getId() {
