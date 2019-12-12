@@ -10,6 +10,8 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.kawesi.sugarcakes.data.CakeCategory;
+
 import java.util.ArrayList;
 
 public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyViewHolder> {
@@ -42,7 +44,7 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyView
 
     class MyViewHolder extends RecyclerView.ViewHolder{
          public ImageView cakeImage;
-         public TextView cakeName, cakePrice, cakeIngredients;
+         public TextView cakeName, cakePrice, cakeIngredients, cakeCategory;
 
          public MyViewHolder(@NonNull View itemView) {
              super(itemView);
@@ -50,13 +52,16 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyView
              cakeName = (TextView) itemView.findViewById(R.id.name_textview);
              cakePrice = (TextView) itemView.findViewById(R.id.price_textview);
              cakeIngredients = (TextView) itemView.findViewById(R.id.ingredients_textview);
+             cakeCategory = (TextView) itemView.findViewById(R.id.category_textView);
          }
 
         public void bind(Cake cake) {
             /* Todo set the image using picasso*/
             cakeName.setText(cake.getName());
             cakePrice.setText("Shs: "+ String.valueOf(cake.getPrice()));
+            String category = CakeCategory.categoryMap.get(cake.getCategory());
 
+            cakeCategory.setText("Category: " + category);
             cakeIngredients.setText("Special Recipes: "+ cake.getIngredients());
         }
     }
