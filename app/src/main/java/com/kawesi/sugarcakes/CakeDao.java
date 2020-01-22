@@ -18,7 +18,7 @@ public interface CakeDao {
     void deleteAllCakes();
 
     @Query("SELECT * FROM cake_table")
-    LiveData<ArrayList<Cake>> getAllCakes();
+    LiveData<List<Cake>> getAllCakes();
 
 
 }

@@ -11,7 +11,7 @@ import java.util.List;
 
 public class CakeViewModel extends AndroidViewModel {
     private CakeRepository mCakeRepository;
-    private LiveData<ArrayList<Cake>> mAllCakes;
+    private LiveData<List<Cake>> mAllCakes;
 
     public CakeViewModel(@NonNull Application application) {
         super(application);
@@ -20,7 +20,7 @@ public class CakeViewModel extends AndroidViewModel {
         mAllCakes = mCakeRepository.getAllCakes();
     }
 
-    LiveData<ArrayList<Cake>> getAllCakes(){
+    LiveData<List<Cake>> getAllCakes(){
         return mAllCakes;
     }
 

@@ -9,7 +9,7 @@ import java.util.List;
 
 public class CakeRepository {
     private CakeDao mCakeDao;
-    private LiveData<ArrayList<Cake>> mAllCakes;
+    private LiveData<List<Cake>> mAllCakes;
 
     CakeRepository(Application application){
         CakeRoomDatabase db = CakeRoomDatabase.getDatabase(application);
@@ -17,7 +17,7 @@ public class CakeRepository {
         mAllCakes = mCakeDao.getAllCakes();
     }
 
-    LiveData<ArrayList<Cake>> getAllCakes(){
+    LiveData<List<Cake>> getAllCakes(){
         return mAllCakes;
     }
 

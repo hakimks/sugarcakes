@@ -13,11 +13,12 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.kawesi.sugarcakes.data.CakeCategory;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyViewHolder> {
-    ArrayList<Cake> mCakes;
+    List<Cake> mCakes;
 
-    public CakeListAdapter(ArrayList<Cake> cakes){
+    public CakeListAdapter(List<Cake> cakes){
         this.mCakes = cakes;
     }
 
@@ -42,7 +43,7 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyView
         return mCakes.size();
     }
 
-    void setCakes(ArrayList<Cake> cakes){
+    void setCakes(List<Cake> cakes){
         mCakes = cakes;
         notifyDataSetChanged();
 
