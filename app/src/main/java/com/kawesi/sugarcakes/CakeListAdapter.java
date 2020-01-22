@@ -15,10 +15,10 @@ import com.kawesi.sugarcakes.data.CakeCategory;
 import java.util.ArrayList;
 
 public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyViewHolder> {
-    ArrayList<Cake> cakes;
+    ArrayList<Cake> mCakes;
 
     public CakeListAdapter(ArrayList<Cake> cakes){
-        this.cakes = cakes;
+        this.mCakes = cakes;
     }
 
     @NonNull
@@ -32,14 +32,20 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyView
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        Cake cake = cakes.get(position);
+        Cake cake = mCakes.get(position);
         holder.bind(cake);
 
     }
 
     @Override
     public int getItemCount() {
-        return cakes.size();
+        return mCakes.size();
+    }
+
+    void setCakes(ArrayList<Cake> cakes){
+        mCakes = cakes;
+        notifyDataSetChanged();
+
     }
 
     class MyViewHolder extends RecyclerView.ViewHolder{
