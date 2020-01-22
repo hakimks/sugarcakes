@@ -6,11 +6,12 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CakeViewModel extends AndroidViewModel {
     private CakeRepository mCakeRepository;
-    private LiveData<List<Cake>> mAllCakes;
+    private LiveData<ArrayList<Cake>> mAllCakes;
 
     public CakeViewModel(@NonNull Application application) {
         super(application);
@@ -19,7 +20,7 @@ public class CakeViewModel extends AndroidViewModel {
         mAllCakes = mCakeRepository.getAllCakes();
     }
 
-    LiveData<List<Cake>> getAllCakes(){
+    LiveData<ArrayList<Cake>> getAllCakes(){
         return mAllCakes;
     }
 

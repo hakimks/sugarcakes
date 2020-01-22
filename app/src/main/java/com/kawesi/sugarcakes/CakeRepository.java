@@ -4,11 +4,12 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class CakeRepository {
     private CakeDao mCakeDao;
-    private LiveData<List<Cake>> mAllCakes;
+    private LiveData<ArrayList<Cake>> mAllCakes;
 
     CakeRepository(Application application){
         CakeRoomDatabase db = CakeRoomDatabase.getDatabase(application);
@@ -16,7 +17,7 @@ public class CakeRepository {
         mAllCakes = mCakeDao.getAllCakes();
     }
 
-    LiveData<List<Cake>> getAllCakes(){
+    LiveData<ArrayList<Cake>> getAllCakes(){
         return mAllCakes;
     }
 
