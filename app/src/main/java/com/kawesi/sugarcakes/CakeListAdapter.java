@@ -40,7 +40,11 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyView
 
     @Override
     public int getItemCount() {
-        return mCakes.size();
+        if(mCakes != null){
+            return mCakes.size();
+        }else {
+            return 0;
+        }
     }
 
     void setCakes(List<Cake> cakes){
