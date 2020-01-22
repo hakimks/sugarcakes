@@ -27,4 +27,5 @@ public class CakeViewModel extends AndroidViewModel {
     public void insertCake(Cake cake){
         mCakeRepository.insertCake(cake);
     }
+
 }

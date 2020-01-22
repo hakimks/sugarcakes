@@ -2,10 +2,13 @@ package com.kawesi.sugarcakes;
 
 import android.content.Context;
 
+import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
+import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import java.util.List;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -30,5 +33,24 @@ public abstract class CakeRoomDatabase extends RoomDatabase {
         }
         return INSTANCE;
     }
+
+    private static RoomDatabase.Callback sCallback = new RoomDatabase.Callback(){
+        @Override
+        public void onCreate(@NonNull SupportSQLiteDatabase db) {
+            super.onCreate(db);
+            databaseWriterService.execute(new Runnable() {
+                @Override
+                public void run() {
+                    CakeDao dao = INSTANCE.mCakeDao();
+                    CakeDummyData dummyData = new CakeDummyData();
+                    List<Cake> dummyCakes = dummyData.cakes;
+                    for (Cake cake: dummyCakes) {
+                        dao.insertCake(cake);
+                    }
+
+                }
+            });
+        }
+    };
 
 }
