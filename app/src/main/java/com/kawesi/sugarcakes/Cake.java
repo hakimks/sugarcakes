@@ -1,5 +1,6 @@
 package com.kawesi.sugarcakes;
 
+import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
@@ -10,10 +11,15 @@ public class Cake {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
-
+    @ColumnInfo(name = "cake_name")
     private String name;
+    @ColumnInfo(name = "cake_category")
+    private int category;
+    @ColumnInfo(name = "cake_price")
     private int price;
+    @ColumnInfo(name = "creation_date")
     private Date creationDate;
+    @ColumnInfo(name = "cake_ingredients")
     private String ingredients;
 
     public int getCategory() {
@@ -24,7 +30,7 @@ public class Cake {
         this.category = category;
     }
 
-    private int category;
+
 
 
     public String getIngredients() {

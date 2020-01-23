@@ -19,8 +19,10 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.provider.Settings;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
@@ -30,6 +32,7 @@ import com.kawesi.sugarcakes.data.CakeCategory;
 import java.io.File;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -66,11 +69,44 @@ public class CreateCakeActivity extends AppCompatActivity {
         otherImage2View = (ImageView) findViewById(R.id.otherPicture2_imageView);
         otherImage3View = (ImageView) findViewById(R.id.otherPicture3_imageView);
 
+        cakeName = findViewById(R.id.cakeNameEditText);
+        cakePrice = findViewById(R.id.price_editText);
+        Date currentTime = Calendar.getInstance().getTime();
+        cakeIngredients = findViewById(R.id.ingredients_editText);
+
+
         cakeImageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showPictureDialog();    // passin the image view
 
+            }
+        });
+
+        final Button saveButton = findViewById(R.id.save_button);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent replyIntent = new Intent();
+//                if (TextUtils.isEmpty(cakeName.getText())){
+//
+//                } else {
+//
+//                }
+                // create a newcake and pass it as a bundle
+
+                setResult(RESULT_OK, replyIntent);
+                finish();
+
+            }
+        });
+        final Button cancelButton = findViewById(R.id.cancel_button);
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent cancleIntent = new Intent();
+                setResult(RESULT_CANCELED, cancleIntent);
+                finish();
             }
         });
 
@@ -143,6 +179,7 @@ public class CreateCakeActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_IMAGE_CAPTURE){
             Bitmap bitmap = BitmapFactory.decodeFile(currentPhotoPath);
             cakeImageView.setImageBitmap(bitmap);
@@ -161,20 +198,6 @@ public class CreateCakeActivity extends AppCompatActivity {
 
         }
     }
-
-    public void doCancel(View view) {
-        finish();
-        return;
-
-    }
-
-
-    public void doSave(View view) {
-    }
-
-
-
-
 
 
 
