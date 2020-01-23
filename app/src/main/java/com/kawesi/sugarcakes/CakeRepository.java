@@ -21,8 +21,14 @@ public class CakeRepository {
         return mAllCakes;
     }
 
-    void insertCake(Cake cake){
-        mCakeDao.insertCake(cake);
+    void insertCake(final Cake cake){
+        CakeRoomDatabase.databaseWriterService.execute(new Runnable() {
+            @Override
+            public void run() {
+                mCakeDao.insertCake(cake);
+            }
+        });
+
     }
 
 }
