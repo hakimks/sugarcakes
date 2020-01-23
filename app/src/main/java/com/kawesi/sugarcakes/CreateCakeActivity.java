@@ -100,7 +100,7 @@ public class CreateCakeActivity extends AppCompatActivity {
                         Integer.parseInt(cakePrice.getText().toString()),
                         currentTime,
                         cakeIngredients.getText().toString(),
-                        Integer.parseInt(categorySpinner.getSelectedItem().toString())
+                        (int)categorySpinner.getSelectedItemId()
                 );
                 replyIntent.putExtra(EXTRA_REPLY, cake);
 
