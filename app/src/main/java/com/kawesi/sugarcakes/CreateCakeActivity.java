@@ -37,6 +37,7 @@ import java.util.Date;
 import java.util.List;
 
 public class CreateCakeActivity extends AppCompatActivity {
+    public static final String EXTRA_REPLY = "com.kawei.sugarcakes.REPLY";
     public static final String IMAGE_VIEW_NAME = "imageViewName";
     private EditText cakeName, cakePrice, cakeIngredients;
     private ImageView cakeImageView, otherImage1View, otherImage2View, otherImage3View;
@@ -71,7 +72,7 @@ public class CreateCakeActivity extends AppCompatActivity {
 
         cakeName = findViewById(R.id.cakeNameEditText);
         cakePrice = findViewById(R.id.price_editText);
-        Date currentTime = Calendar.getInstance().getTime();
+        final Date currentTime = Calendar.getInstance().getTime();
         cakeIngredients = findViewById(R.id.ingredients_editText);
 
 
@@ -94,6 +95,14 @@ public class CreateCakeActivity extends AppCompatActivity {
 //
 //                }
                 // create a newcake and pass it as a bundle
+                Cake cake = new Cake(
+                        cakeName.getText().toString(),
+                        Integer.parseInt(cakePrice.getText().toString()),
+                        currentTime,
+                        cakeIngredients.getText().toString(),
+                        Integer.parseInt(categorySpinner.getSelectedItem().toString())
+                );
+                replyIntent.putExtra(EXTRA_REPLY, cake);
 
                 setResult(RESULT_OK, replyIntent);
                 finish();
@@ -104,8 +113,8 @@ public class CreateCakeActivity extends AppCompatActivity {
         cancelButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent cancleIntent = new Intent();
-                setResult(RESULT_CANCELED, cancleIntent);
+                Intent cancelIntent = new Intent();
+                setResult(RESULT_CANCELED, cancelIntent);
                 finish();
             }
         });

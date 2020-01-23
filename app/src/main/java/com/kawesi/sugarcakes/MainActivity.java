@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.kawesi.sugarcakes.data.CakeDbHelper;
@@ -62,7 +63,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if(requestCode == CREATE_REQUEST_CODE && resultCode == RESULT_OK){
+            Cake cake = data.getParcelableExtra(CreateCakeActivity.EXTRA_REPLY);
+            mCakeViewModel.insertCake(cake);
 
+        } else {
+            Toast.makeText(getApplicationContext(), "Canceled : No Cake Created", Toast.LENGTH_SHORT).show();
         }
     }
 }

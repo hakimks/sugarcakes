@@ -1,5 +1,8 @@
 package com.kawesi.sugarcakes;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
@@ -7,7 +10,7 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 
 @Entity(tableName = "cake_table")
-public class Cake {
+public class Cake implements Parcelable {
     @PrimaryKey(autoGenerate = true)
     private int id;
 
@@ -22,6 +25,18 @@ public class Cake {
     @ColumnInfo(name = "cake_ingredients")
     private String ingredients;
 
+    public static final Creator<Cake> CREATOR = new Creator<Cake>() {
+        @Override
+        public Cake createFromParcel(Parcel in) {
+            return new Cake(in);
+        }
+
+        @Override
+        public Cake[] newArray(int size) {
+            return new Cake[size];
+        }
+    };
+
     public int getCategory() {
         return category;
     }
@@ -29,8 +44,6 @@ public class Cake {
     public void setCategory(int category) {
         this.category = category;
     }
-
-
 
 
     public String getIngredients() {
@@ -77,12 +90,33 @@ public class Cake {
     }
 
 
-    public Cake(int id, String name, int price, Date creationDate, String ingredients, int category) {
-        this.id = id;
+    public Cake(String name, int price, Date creationDate, String ingredients, int category) {
         this.name = name;
         this.price = price;
         this.creationDate = creationDate;
         this.ingredients = ingredients;
         this.category = category;
+    }
+    public Cake(Parcel in){
+        id = in.readInt();
+        name = in.readString();
+        price = in.readInt();
+        creationDate = new Date(in.readLong());
+        ingredients = in.readString();
+        category = in.readInt();
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(name);
+        dest.writeInt(category);
+        dest.writeInt(price);
+        dest.writeString(ingredients);
     }
 }
