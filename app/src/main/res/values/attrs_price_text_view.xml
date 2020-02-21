@@ -1,0 +1,5 @@
+<resources>
+    <declare-styleable name="PriceTextView">
+        <attr name="price" format="reference|float" />
+    </declare-styleable>
+</resources>

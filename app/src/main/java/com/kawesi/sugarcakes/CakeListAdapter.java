@@ -56,6 +56,7 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyView
     class MyViewHolder extends RecyclerView.ViewHolder{
          public ImageView cakeImage;
          public TextView cakeName, cakePrice, cakeIngredients, cakeCategory;
+         public PriceTextView price;
 
          public MyViewHolder(@NonNull View itemView) {
              super(itemView);
@@ -64,6 +65,8 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyView
              cakePrice = (TextView) itemView.findViewById(R.id.price_textview);
              cakeIngredients = (TextView) itemView.findViewById(R.id.ingredients_textview);
              cakeCategory = (TextView) itemView.findViewById(R.id.category_textView);
+
+
          }
 
         public void bind(Cake cake) {
@@ -74,6 +77,8 @@ public class CakeListAdapter extends RecyclerView.Adapter<CakeListAdapter.MyView
 
             cakeCategory.setText("Category: " + category);
             cakeIngredients.setText("Special Recipes: "+ cake.getIngredients());
+
+
         }
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">SugarCakes</string>
+    <string name="title_activity_maps">Map</string>
 </resources>
