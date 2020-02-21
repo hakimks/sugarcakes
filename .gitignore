@@ -15,4 +15,5 @@
 .idea/
 
 app/google-services.json
+app/release/*
 
